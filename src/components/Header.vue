@@ -20,7 +20,11 @@
           <li>
             <a href="#" @click="endDay">End Day</a>
           </li>
-          <li class="dropdown">
+          <li
+            class="dropdown"
+            :class="{ open: isDropdownOpen }"
+            @click="isDropdownOpen = !isDropdownOpen"
+          >
             <a
               href="#"
               class="dropdown-toggle"
@@ -39,7 +43,7 @@
               <li>
                 <a href="#">Load Data</a>
               </li>
-              <router-link tag="li" active-class="active" to="/">
+              <router-link tag="li" to="/">
                 <a>Home</a>
               </router-link>
               <router-link tag="li" active-class="active" to="/portfolio">
@@ -58,6 +62,11 @@
 <script>
 import { mapActions } from "vuex";
 export default {
+  data() {
+    return {
+      isDropdownOpen: false
+    };
+  },
   computed: {
     funds() {
       return this.$store.getters.funds;
